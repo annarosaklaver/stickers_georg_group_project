@@ -19,3 +19,5 @@ ggplot(data = data) +
   geom_line(stat = "bin", binwidth = 5) +
   geom_vline(aes(xintercept = start_date), linetype = 'dashed', data = generations) +
   geom_text(aes(x= start_date - 5, label= generation), y=600, colour="red", angle=90, data = generations)
+
+ggsave('first_plot.pdf', width = 20, height = 15, units = c('cm'))
