@@ -1,5 +1,5 @@
 import json
-from data_compiler import compile_data
+from python_scripts.data_compiler import compile_data
 
 #run data compiler
 all_files = compile_data()
