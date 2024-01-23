@@ -5,7 +5,7 @@ with open("musicians_data.json", encoding="utf-8") as file:
     musicians_data = json.load(file)
 
 genre_frequency = {}
-grouped_genres = {Avant-garde &}
+
 
 for entry in musicians_data:
     if type(entry["ontology/genre_label"]) is list:
@@ -22,8 +22,16 @@ for entry in musicians_data:
 
 
 counted_genre_frequency = Counter(genre_frequency)
-print(counted_genre_frequency.most_common(20))
-             
+
+
+genre_frequency_list = sorted(counted_genre_frequency)     
+
+for genre in genre_frequency_list:
+    if genre_frequency[genre] < 99:
+        genre_frequency.pop(genre)
+
+print(genre_frequency)
+
 #         for word in hamlet_text_split:
 #     if word not in hamlet_dictionary:
 #         hamlet_dictionary[word]=1
