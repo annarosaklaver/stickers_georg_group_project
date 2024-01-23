@@ -1,5 +1,6 @@
 import json
 from collections import Counter
+import csv
 
 with open("musicians_data.json", encoding="utf-8") as file:
     musicians_data = json.load(file)
@@ -30,7 +31,6 @@ for genre in genre_frequency_list:
     if genre_frequency[genre] < 99:
         genre_frequency.pop(genre)
 
-print(genre_frequency)
 
 grouped_genres = {"Experimental" : ["Instrumental", "Industrial music"],
                   "Blues" : ["Blues", "Contemporary R&B", "Chicago blues", "Blues rock", "Electric blues", "Country blues"],
@@ -46,6 +46,37 @@ grouped_genres = {"Experimental" : ["Instrumental", "Industrial music"],
                   "Metal" : ["Heavy metal music", "Glam metal", "Black metal", "Industrial metal", "Symphonic metal", "Death metal", "Thrash metal", "Alternative metal", "Power metal", "Progressive metal", "Doom metal", "Speed metal", "Metalcore", "Nu metal"],
                   "Punk" : ["Pop punk", "Post punk", "Punk rock", "Hardcore punk", "Post-hardcore"],
                   "Other" : ["Hindustani classical music", "Musical theatre", "World music", "Indepedent music", "Acoustic music", "Contemporary worship music", "Film score", "Opera", "Contemporary classical music", "Ska", "Traditional black gospel", "Urban contemporary gospel", "Reggae", "Funk", "Rocksteady", "Indian classical music"]}
+
+with open("cleaned_musician_data.json", encoding="utf-8") as file:
+    clean_musicians_data = json.load(file)
+
+grouped_musicians_data = []
+
+for entry in clean_musicians_data:
+    if "Birthyear" in entry:
+        for grouped_genre in grouped_genres:
+            if type(entry["Genre(s)"]) is list:
+                for genre in entry["Genre(s)"]:
+                    if genre in grouped_genres[grouped_genre]:
+                        grouped_musicians_data.append({"Title" : entry["Title"],
+                                        "Birthyear" : entry["Birthyear"],
+                                        "Genre(s)" : grouped_genre})  
+            else:
+                if genre in grouped_genres[grouped_genre]:
+                    grouped_musicians_data.append({"Title" : entry["Title"],
+                                        "Birthyear" : entry["Birthyear"],
+                                        "Genre(s)" : grouped_genre})
+
+with open("grouped_genre_and_birthyear.csv", "w", newline="", encoding="utf-8") as file:
+    fieldnames = ["Title", "Genre", "Birthyear"]
+    writer = csv.DictWriter(file, fieldnames=fieldnames)
+    writer.writeheader()
+    for entry in grouped_musicians_data:
+        if type(entry["Genre(s)"]) is list:
+            for genre in entry["Genre(s)"]: 
+                writer.writerow({"Title" : entry["Title"], "Genre" : genre, "Birthyear" : entry["Birthyear"]})
+        else:
+            writer.writerow({"Title" : entry["Title"], "Genre" : entry["Genre(s)"], "Birthyear" : entry["Birthyear"]})
 
 
 #         for word in hamlet_text_split:
