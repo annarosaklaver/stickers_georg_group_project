@@ -21,12 +21,13 @@ for entry in musicians_data:
         elif entry["ontology/genre_label"] in genre_frequency:
             genre_frequency[genre] = genre_frequency[genre] +1
 
-
+#sorted genres in order of frequency
 counted_genre_frequency = Counter(genre_frequency)
 
-
+#created list of unique elements  
 genre_frequency_list = sorted(counted_genre_frequency)     
 
+#removed genres that occured with a frequency of less than 99 times
 for genre in genre_frequency_list:
     if genre_frequency[genre] < 99:
         genre_frequency.pop(genre)
