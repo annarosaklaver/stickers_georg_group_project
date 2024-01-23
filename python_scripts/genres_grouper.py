@@ -77,20 +77,3 @@ with open("grouped_genre_and_birthyear.csv", "w", newline="", encoding="utf-8") 
                 writer.writerow({"Title" : entry["Title"], "Genre" : genre, "Birthyear" : entry["Birthyear"]})
         else:
             writer.writerow({"Title" : entry["Title"], "Genre" : entry["Genre(s)"], "Birthyear" : entry["Birthyear"]})
-
-
-#         for word in hamlet_text_split:
-#     if word not in hamlet_dictionary:
-#         hamlet_dictionary[word]=1
-#     elif word in hamlet_dictionary:
-#         hamlet_dictionary[word]=hamlet_dictionary[word]+1
-       
-#         if genre in entry['ontology/genre_label'] == []:
-#             for genre in entry['ontology/genre_label']:
-#                 if genre not in list_of_genres:
-#                     list_of_genres.append(genre)
-#         if genre in entry['ontology/genre_label'] == "":
-#                 if genre not in list_of_genres:
-#                     list_of_genres.append(genre)
-
-# print(list_of_genres)
