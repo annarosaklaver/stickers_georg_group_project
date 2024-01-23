@@ -2,12 +2,15 @@ import json
 from collections import Counter
 import csv
 
+#import the musicians data and make it a variable
 with open("musicians_data.json", encoding="utf-8") as file:
     musicians_data = json.load(file)
 
+#create a dictionary to keep track of genre frequency and iterate over musicians_data to compile the dictionary
+    # separate loops are needed for genre entries that are lists and genre entries containing a single value
+    # if the genre is not in the dictionary: add it to the dictionary and set the count to one
+    #if the genre is in the dictionary: add 1 to the count
 genre_frequency = {}
-
-
 for entry in musicians_data:
     if type(entry["ontology/genre_label"]) is list:
         for genre in entry["ontology/genre_label"]:
@@ -24,15 +27,14 @@ for entry in musicians_data:
 #sorted genres in order of frequency
 counted_genre_frequency = Counter(genre_frequency)
 
-#created list of unique elements  
+# sort the genres by frequency and only include genres that appear over 99 times
 genre_frequency_list = sorted(counted_genre_frequency)     
 
-#removed genres that occured with a frequency of less than 99 times
 for genre in genre_frequency_list:
     if genre_frequency[genre] < 99:
         genre_frequency.pop(genre)
 
-
+# sort the genres that appear over 99 times into groups based on wikipedia classification
 grouped_genres = {"Experimental" : ["Instrumental", "Industrial music"],
                   "Blues" : ["Blues", "Contemporary R&B", "Chicago blues", "Blues rock", "Electric blues", "Country blues"],
                   "Country" : ["Country music", "Country rock", "Alternative country", "Bluegrass music", "Country blues"],
@@ -48,11 +50,16 @@ grouped_genres = {"Experimental" : ["Instrumental", "Industrial music"],
                   "Punk" : ["Pop punk", "Post punk", "Punk rock", "Hardcore punk", "Post-hardcore"],
                   "Other" : ["Hindustani classical music", "Musical theatre", "World music", "Indepedent music", "Acoustic music", "Contemporary worship music", "Film score", "Opera", "Contemporary classical music", "Ska", "Traditional black gospel", "Urban contemporary gospel", "Reggae", "Funk", "Rocksteady", "Indian classical music"]}
 
+#import the clean musicians dataset
 with open("cleaned_musician_data.json", encoding="utf-8") as file:
     clean_musicians_data = json.load(file)
 
+#grouped_musicians_data is a list of dictionaries that we will use to create a csv file
 grouped_musicians_data = []
 
+#loop over entries in clean_musicians_data and only include entries that contain a birthyear
+    #loop over the grouped genres, check if the entry contains a subgenre and group accordingly
+    #note!! this yields a dataset with a lot of duplicates that need to be removed in R
 for entry in clean_musicians_data:
     if "Birthyear" in entry:
         for grouped_genre in grouped_genres:
@@ -68,6 +75,7 @@ for entry in clean_musicians_data:
                                         "Birthyear" : entry["Birthyear"],
                                         "Genre(s)" : grouped_genre})
 
+# write the data with grouped genres to a csv file
 with open("grouped_genre_and_birthyear.csv", "w", newline="", encoding="utf-8") as file:
     fieldnames = ["Title", "Genre", "Birthyear"]
     writer = csv.DictWriter(file, fieldnames=fieldnames)

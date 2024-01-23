@@ -5,6 +5,7 @@ from python_scripts.data_compiler import compile_data
 all_files = compile_data()
 all_genres = set()
 
+#create a dataset containing all musicians that have a genre listed (and create a list of all genres)
 genre_data = []
 for entry in all_files:
     if "musical artist" in entry["http://www.w3.org/1999/02/22-rdf-syntax-ns#type_label"]: 
