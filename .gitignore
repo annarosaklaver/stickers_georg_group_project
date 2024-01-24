@@ -26,5 +26,8 @@ Y_people.json
 Z_people.json
 musicians_data.json
 cleaned_musician_data.json
-.DS_Store
-.Rhistory
+*.DS_Store
+*.Rhistory
+billboard_data.json
+*.pyc
+grouped_billboard_data.json
