@@ -8,10 +8,6 @@ generations <- read_csv('output_data/generations.csv')
 
 #not necessary right now, but might be for other plots
 genre_counts_per_year <- data |>
-#  transform(
-   # Date = as.numeric(Date),
-   # period = round(Birthyear / 5) * 5
- # ) |>
   group_by(Date, Genre) |>
   summarise(n = n()) |>
   group_by(Date) |>

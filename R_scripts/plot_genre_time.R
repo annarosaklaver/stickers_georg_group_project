@@ -44,7 +44,7 @@ ggsave('genre_birthyear_stacked.pdf', width = 20, height = 15, units = c('cm'))
 
 ggplot(data = data) +
   aes(x = Birthyear, color = Genre) +
-  labs(x = 'Birth year', y = "Number of artists", title = "Yee") +
+  labs(x = 'Birth year', y = "Number of artists") +
   xlim(1938,1980) + 
   geom_line(stat = "bin", binwidth = 5) +
   geom_vline(aes(xintercept = start_date), linetype = 'dashed', data = generations) +
