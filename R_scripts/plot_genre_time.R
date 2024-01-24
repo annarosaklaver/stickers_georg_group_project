@@ -38,6 +38,26 @@ ggplot(data = musicians_per_year) +
   labs(x = 'Birth year', y = "Percentage of artists") +
   geom_area(aes(fill = Genre), alpha = 0.6, size = 0.5, colour = "black", stat = "identity")+ 
   geom_vline(aes(xintercept = start_date), linetype = 'dashed', data = generations) +
-  geom_text(aes(x= start_date + 3, label= generation), y=2, hjust = 0, colour="white", angle=90, data = generations)
+  geom_text(aes(x= start_date + 1, label= generation), y=2, hjust = 0, colour="white", angle=90, data = generations)
 
 ggsave('genre_birthyear_stacked.pdf', width = 20, height = 15, units = c('cm'))
+
+ggplot(data = data) +
+  aes(x = Birthyear, color = Genre) +
+  labs(x = 'Birth year', y = "Number of artists", title = "Yee") +
+  xlim(1938,1980) + 
+  geom_line(stat = "bin", binwidth = 5) +
+  geom_vline(aes(xintercept = start_date), linetype = 'dashed', data = generations) +
+  geom_text(aes(x= start_date + 1, label= generation), y=750, hjust = 1, colour="red", angle=90, data = generations)
+
+ggsave('genre_birthyear_line_compare.pdf', width = 20, height = 15, units = c('cm'))
+
+ggplot(data = musicians_per_year) + 
+  aes(x = period, y = percentage) + 
+  xlim(1938,1980) + 
+  labs(x = 'Birth year', y = "Percentage of artists") +
+  geom_area(aes(fill = Genre), alpha = 0.6, size = 0.5, colour = "black", stat = "identity")+ 
+  geom_vline(aes(xintercept = start_date), linetype = 'dashed', data = generations) +
+  geom_text(aes(x= start_date + 1, label= generation), y=2, hjust = 0, colour="white", angle=90, data = generations)
+
+ggsave('genre_birthyear_stacked_compare.pdf', width = 20, height = 15, units = c('cm'))
