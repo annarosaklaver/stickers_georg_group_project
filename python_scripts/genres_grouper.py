@@ -74,7 +74,7 @@ for entry in clean_musicians_data:
                                         "Genre(s)" : grouped_genre})
 
 # write the data with grouped genres to a csv file
-with open("grouped_genre_and_birthyear.csv", "w", newline="", encoding="utf-8") as file:
+with open("output_data/grouped_genre_and_birthyear.csv", "w", newline="", encoding="utf-8") as file:
     fieldnames = ["Title", "Genre", "Birthyear"]
     writer = csv.DictWriter(file, fieldnames=fieldnames)
     writer.writeheader()
