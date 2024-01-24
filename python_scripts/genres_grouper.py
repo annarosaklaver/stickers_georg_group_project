@@ -40,15 +40,17 @@ grouped_genres = {"Experimental" : ["Instrumental", "Industrial music"],
                   "Country" : ["Country music", "Country rock", "Alternative country", "Bluegrass music", "Country blues"],
                   "Easy_Listening" : ["New-age music", "Easy listening", "Downtempo"],
                   "Electronic" : ["Dance music", "Electronic", "Alternative hip hop", "Drumb and bass", "House music", "Trip hop", "Intelligent dance music", "Electronica", "Electro (music)", "Industrial metal", "New wave music", "Synth pop", "New-age music", "Ambient music", "Industrial rock", "Disco", "Trap music", "Post-rock", "Eurodance", "Downtempo", "Progressive house", "Alternative dance", "Dub music", "Neo soul", "Dubstep", "Deep house", "Trance music", "Grime music"],
-                  "Folk" : ["Folk music", "Folk rock", "Indie folk", "Celtic music", "Singer-songwriter"],
+                  "Folk" : ["Folk music", "Folk rock", "Indie folk", "Celtic music", "Singer-songwriter", "Acoustic music"],
                   "Hip_Hop" : ["Hip hop music", "Alternative hip hop", "Gangsta rap", "Underground hip hop"],
                   "Jazz" : ["Jazz", "Avant-garde jazz", "Bossa nova", "Big band", "Bebop", "Hard bop", "Swing music", "Free jazz"],
-                  "Pop" : ["Pop music", "Pop-folk", "Dance pop", "Indie pop", "Pop rock", "Power pop", "Pop punk", "K-pop", "Urban contemporary", "Synth pop", "Chanson", "J-pop"],
-                  "Soul" : ["Contemporary R&B", "Rhythm and blues", "Soul music", "Disco", "Neo soul", "Blue-eyed soul"],
+                  "Pop" : ["Pop music", "Pop-folk", "Dance pop", "Indie pop", "Pop rock", "Power pop", "Pop punk", "K-pop", "Urban contemporary", "Synth pop", "Chanson", "J-pop", "Contemporary worship music"],
+                  "Soul_and_R&B" : ["Contemporary R&B", "Rhythm and blues", "Soul music", "Disco", "Neo soul", "Blue-eyed soul",  "Traditional black gospel", "Urban contemporary gospel", "Funk"],
                   "Rock" : ["Rock music", "Alternative rock", "Indie rock", "Heavy metal music", "Hard rock", "Pop rock", "Power pop", "Progressive rock", "Folk rock", "Rock and roll", "Country rock", "Grunge", "Experimental rock", "Glam rock", "Blues rock", "Punk rock", "Garage rock", "Psychedelic rock", "Gothic rock", "Industrial rock", "Post-rock", "Christian rock", "Roots rock", "Alternative dance", "Art rock", "Instrumental rock", "Rockabilly", "Noise rock", "Southern rock", "Dream pop", "Post-grunge"],
                   "Metal" : ["Heavy metal music", "Glam metal", "Black metal", "Industrial metal", "Symphonic metal", "Death metal", "Thrash metal", "Alternative metal", "Power metal", "Progressive metal", "Doom metal", "Speed metal", "Metalcore", "Nu metal"],
                   "Punk" : ["Pop punk", "Post punk", "Punk rock", "Hardcore punk", "Post-hardcore"],
-                  "Other" : ["Hindustani classical music", "Musical theatre", "World music", "Indepedent music", "Acoustic music", "Contemporary worship music", "Film score", "Opera", "Contemporary classical music", "Ska", "Traditional black gospel", "Urban contemporary gospel", "Reggae", "Funk", "Rocksteady", "Indian classical music"]}
+                  "Classical" : ["Hindustani classical music", "Opera", "Contemporary classical music", "Indian classical music" ],
+                  "Carribbean" : ["Ska", "Reggae", "Rocksteady"],
+                  "Other" : ["Musical theatre", "World music", "Indepedent music", "Film score"]}
 
 #import the clean musicians dataset
 with open("cleaned_musician_data.json", encoding="utf-8") as file:
