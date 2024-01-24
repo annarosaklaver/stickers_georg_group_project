@@ -86,3 +86,47 @@ with open("grouped_genre_and_birthyear.csv", "w", newline="", encoding="utf-8") 
                 writer.writerow({"Title" : entry["Title"], "Genre" : genre, "Birthyear" : entry["Birthyear"]})
         else:
             writer.writerow({"Title" : entry["Title"], "Genre" : entry["Genre(s)"], "Birthyear" : entry["Birthyear"]})
+
+#creating the exact same csv, but with starting year of a musician's career instead of birthyear (analysis pipeline is the same).
+career_musicians_data = []
+
+for entry in clean_musicians_data:
+    if "Active_Years_Start" in entry:
+        for grouped_genre in grouped_genres:
+            if type(entry["Genre(s)"]) is list:
+                for genre in entry["Genre(s)"]:
+                    if genre in grouped_genres[grouped_genre]:
+                        career_musicians_data.append({"Title" : entry["Title"],
+                                        "Career_Start" : entry["Active_Years_Start"],
+                                        "Genre(s)" : grouped_genre})  
+            else:
+                if genre in grouped_genres[grouped_genre]:
+                    grouped_musicians_data.append({"Title" : entry["Title"],
+                                        "Career_Start" : entry["Active_Years_Start"],
+                                        "Genre(s)" : grouped_genre})
+    else:
+        if "Birthyear" in entry:
+            for grouped_genre in grouped_genres:
+                if type(entry["Genre(s)"]) is list:
+                    for genre in entry["Genre(s)"]:
+                        if genre in grouped_genres[grouped_genre]:
+                            career_musicians_data.append({"Title" : entry["Title"],
+                                            "Career_Start" : int(entry["Birthyear"]) + 20,
+                                            "Genre(s)" : grouped_genre})  
+                else:
+                    if genre in grouped_genres[grouped_genre]:
+                        grouped_musicians_data.append({"Title" : entry["Title"],
+                                            "Career_Start" : int(entry["Birthyear"]) + 20,
+                                            "Genre(s)" : grouped_genre})
+                        
+# write the data with grouped genres to a csv file
+with open("output_data/grouped_genre_and_career_start.csv", "w", newline="", encoding="utf-8") as file:
+    fieldnames = ["Title", "Genre", "Career_Start"]
+    writer = csv.DictWriter(file, fieldnames=fieldnames)
+    writer.writeheader()
+    for entry in career_musicians_data:
+        if type(entry["Genre(s)"]) is list:
+            for genre in entry["Genre(s)"]: 
+                writer.writerow({"Title" : entry["Title"], "Genre" : genre, "Career_Start" : entry["Career_Start"]})
+        else:
+            writer.writerow({"Title" : entry["Title"], "Genre" : entry["Genre(s)"], "Career_Start" : entry["Career_Start"]})
