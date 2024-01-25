@@ -40,6 +40,7 @@ ggplot(data = data) +
   geom_text(aes(x= start_date + 5, label= generation), y=80000, hjust = 1, colour="red", angle=90, data = generations)
 
 ggsave('output_data/genre_hot100_line.pdf', width = 20, height = 15, units = c('cm'))
+ggsave('output_data/genre_hot100_line.png', width = 20, height = 15, units = c('cm'))
 
 ggplot(data = genre_counts_per_year) + 
   aes(x = Date, y = percentage) + 
@@ -51,6 +52,7 @@ ggplot(data = genre_counts_per_year) +
   geom_text(aes(x= start_date + 3, label= generation), y=2, hjust = 0, colour="white", angle=90, data = generations)
 
 ggsave('output_data/genre_hot100_stacked.pdf', width = 20, height = 15, units = c('cm'))
+ggsave('output_data/genre_hot100_stacked.png', width = 20, height = 15, units = c('cm'))
 
 ggplot(data = data) +
   aes(x = Date, color = Genre) +
@@ -62,6 +64,7 @@ ggplot(data = data) +
   geom_text(aes(x= start_date + 1, label= generation), y=80000, hjust = 1, colour="red", angle=90, data = generations)
 
 ggsave('output_data/genre_hot100_line_compare.pdf', width = 20, height = 15, units = c('cm'))
+ggsave('output_data/genre_hot100_line_compare.png', width = 20, height = 15, units = c('cm'))
 
 ggplot(data = genre_counts_per_year) + 
   aes(x = Date, y = percentage) + 
@@ -73,3 +76,4 @@ ggplot(data = genre_counts_per_year) +
   geom_text(aes(x= start_date + 1, label= generation), y=2, hjust = 0, colour="white", angle=90, data = generations)
 
 ggsave('output_data/genre_hot100_stacked_compare.pdf', width = 20, height = 15, units = c('cm'))
+ggsave('output_data/genre_hot100_stacked_compare.png', width = 20, height = 15, units = c('cm'))

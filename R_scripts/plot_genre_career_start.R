@@ -53,6 +53,7 @@ ggplot(data = data) +
   geom_text(aes(x= start_date + 5, label= generation), y=1165, hjust = 1, colour="red", angle=90, data = generations)
 
 ggsave('output_data/career_start_line.pdf', width = 20, height = 15, units = c('cm'))
+ggsave('output_data/career_start_line.png', width = 20, height = 15, units = c('cm'))
 
 ggplot(data = musicians_per_year) + 
   aes(x = period, y = percentage) + 
@@ -64,6 +65,7 @@ ggplot(data = musicians_per_year) +
   geom_text(aes(x= start_date + 3, label= generation), y=2, hjust = 0, colour="white", angle=90, data = generations)
 
 ggsave('output_data/career_start_stacked.pdf', width = 20, height = 15, units = c('cm'))
+ggsave('output_data/career_start_stacked.png', width = 20, height = 15, units = c('cm'))
 
 ggplot(data = data) +
   aes(x = Career_Start, color = Genre) +
@@ -75,6 +77,7 @@ ggplot(data = data) +
   geom_text(aes(x= start_date + 1, label= generation), y=1165, hjust = 1, colour="red", angle=90, data = generations)
 
 ggsave('output_data/career_start_line_compare.pdf', width = 20, height = 15, units = c('cm'))
+ggsave('output_data/career_start_line_compare.png', width = 20, height = 15, units = c('cm'))
 
 ggplot(data = percentage_musicians) + 
   aes(x = Career_Start, y = percentage_per_year) + 
@@ -86,3 +89,4 @@ ggplot(data = percentage_musicians) +
   geom_text(aes(x= start_date + 1, label= generation), y=2, hjust = 0, colour="white", angle=90, data = generations)
 
 ggsave('output_data/career_start_stacked_compare.pdf', width = 20, height = 15, units = c('cm'))
+ggsave('output_data/career_start_stacked_compare.png', width = 20, height = 15, units = c('cm'))
