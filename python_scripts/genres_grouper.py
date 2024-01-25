@@ -38,7 +38,7 @@ for genre in genre_frequency_list:
 grouped_genres = {"Blues" : ["Blues", "Contemporary R&B", "Chicago blues", "Blues rock", "Electric blues", "Country blues"],
                   "Country" : ["Country music", "Country rock", "Alternative country", "Bluegrass music", "Country blues"],
                   "Easy_Listening" : ["New-age music", "Easy listening", "Downtempo"],
-                  "Electronic" : ["Dance music", "Electronic", "Alternative hip hop", "Drumb and bass", "House music", "Trip hop", "Intelligent dance music", "Electronica", "Electro (music)", "Industrial metal", "New wave music", "Synth pop", "New-age music", "Ambient music", "Industrial rock", "Disco", "Trap music", "Post-rock", "Eurodance", "Downtempo", "Progressive house", "Alternative dance", "Dub music", "Neo soul", "Dubstep", "Deep house", "Trance music", "Grime music"],
+                  "Electronic" : ["Dance music", "Electronic", "Alternative hip hop", "Drum and bass", "House music", "Trip hop", "Intelligent dance music", "Electronica", "Electro (music)", "Industrial metal", "New wave music", "Synth pop", "New-age music", "Ambient music", "Industrial rock", "Disco", "Trap music", "Post-rock", "Eurodance", "Downtempo", "Progressive house", "Alternative dance", "Dub music", "Neo soul", "Dubstep", "Deep house", "Trance music", "Grime music"],
                   "Folk" : ["Folk music", "Folk rock", "Indie folk", "Celtic music", "Singer-songwriter", "Acoustic music"],
                   "Hip_Hop" : ["Hip hop music", "Alternative hip hop", "Gangsta rap", "Underground hip hop"],
                   "Jazz" : ["Jazz", "Avant-garde jazz", "Bossa nova", "Big band", "Bebop", "Hard bop", "Swing music", "Free jazz"],
