@@ -19,25 +19,23 @@ data_billboard <- read_csv('output_data/grouped_billboard_data.csv') |>
       Genre == "Metal" ~ "Metal", 
     )
   )
-generations <- read_csv('output_data/generations.csv')
 
 #not necessary right now, but might be for other plots
-genre_counts_per_year <- data_billboard |>
-  group_by(Date, Genre) |>
+genre_counts_per_year_artists <- data_billboard |>
+  group_by(Date, Genre, Artist) |>
   summarise(n = n()) |>
+  group_by(Date, Genre) |> 
+  summarise(n = n()) |> 
   group_by(Date) |>
   mutate(percentage = n/sum(n) * 100) |>
   ungroup()
 
-billboard <- ggplot(data = genre_counts_per_year) + 
+billboard_artists <- ggplot(data = genre_counts_per_year_artists) + 
   aes(x = Date, y = percentage) + 
   xlim(1958,2000) + 
   theme_light() + 
-  labs(x = 'Year', y = "Percentage of Hot 100 songs", title = "Percentage of Billboard Hot 100 songs in each genre") +
+  labs(x = 'Year', y = "Percentage of Hot 100 songs", title = "Percentage of Billboard Hot 100 artists in each genre") +
   geom_area(aes(fill = Genre), alpha = 0.8, size = 0.5, colour = "black", stat = "identity")
-
-ggsave('output_data/genre_hot100_stacked_compare.pdf', width = 20, height = 15, units = c('cm'))
-ggsave('output_data/genre_hot100_stacked_compare.png', width = 20, height = 15, units = c('cm'))
 
 data_wikipedia <- read_csv('output_data/grouped_genre_and_career_start.csv') |>
   transform(Career_Start = as.numeric(Career_Start)) |>
@@ -76,9 +74,22 @@ wikipedia <- ggplot(data = percentage_musicians) +
   labs(x = 'Start of career (year)', y = "Percentage of artists", title = "Percentage of artists making music in each genre") +
   geom_area(aes(fill = Genre), alpha = 0.8, size = 0.5, colour = "black", stat = "identity") 
 
-ggsave('output_data/career_start_stacked_compare.pdf', width = 20, height = 15, units = c('cm'))
-ggsave('output_data/career_start_stacked_compare.png', width = 20, height = 15, units = c('cm'))
+#not necessary right now, but might be for other plots
+genre_counts_per_year <- data_billboard |>
+  group_by(Date, Genre) |>
+  summarise(n = n()) |>
+  group_by(Date) |>
+  mutate(percentage = n/sum(n) * 100) |>
+  ungroup()
 
-ggarrange(wikipedia, billboard, widths = c(4,5))
-ggsave('output_data/comparison.pdf', width = 26, height = 10, units = c('cm'))
-ggsave('output_data/comparison.png', width = 26, height = 10, units = c('cm'))
+billboard <- ggplot(data = genre_counts_per_year) + 
+  aes(x = Date, y = percentage) + 
+  xlim(1958,2000) + 
+  theme_light() + 
+  theme(legend.position = "none") +
+  labs(x = 'Year', y = "Percentage of Hot 100 songs", title = "Percentage of Billboard Hot 100 songs in each genre") +
+  geom_area(aes(fill = Genre), alpha = 0.8, size = 0.5, colour = "black", stat = "identity")
+
+ggarrange(wikipedia, billboard_artists, widths = c(4,5), ncol = 2)
+ggsave('output_data/comparison.pdf', width = 28, height = 10, units = c('cm'))
+ggsave('output_data/comparison.png', width = 28, height = 10, units = c('cm'))
