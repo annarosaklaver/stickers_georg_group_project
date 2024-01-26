@@ -69,10 +69,12 @@ for entry in billboard_data:
             for genre in entry["spotify_genre"]:
                 if genre in grouped_genres[grouped_genre]:
                     grouped_billboard_data.append({"Date" : entry["weekID"],
+                                                   "Artist" : entry["Performer"],
                                     "Genre" : grouped_genre})  
         else:
             if genre in grouped_genres[grouped_genre]:
                 grouped_billboard_data.append({"Date" : entry["weekID"],
+                                               "Artist" : entry["Performer"],
                                     "Genre" : grouped_genre})
 
 #make dates by year and not a string
@@ -83,8 +85,8 @@ for entry in grouped_billboard_data:
 #      json.dump(grouped_billboard_data, file, indent = 4)
 
 with open("output_data/grouped_billboard_data.csv", "w", newline="", encoding="utf-8") as file:
-    fieldnames = ["Genre", "Date"]
+    fieldnames = ["Artist", "Genre", "Date"]
     writer = csv.DictWriter(file, fieldnames=fieldnames)
     writer.writeheader()
     for entry in grouped_billboard_data:
-        writer.writerow({"Genre" : entry["Genre"], "Date" : entry["Date"]})
+        writer.writerow({"Artist" : entry["Artist"], "Genre" : entry["Genre"], "Date" : entry["Date"]})
