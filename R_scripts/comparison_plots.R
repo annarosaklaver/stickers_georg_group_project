@@ -20,7 +20,6 @@ data_billboard <- read_csv('output_data/grouped_billboard_data.csv') |>
     )
   )
 
-#not necessary right now, but might be for other plots
 genre_counts_per_year_artists <- data_billboard |>
   group_by(Date, Genre, Artist) |>
   summarise(n = n()) |>
@@ -34,7 +33,7 @@ billboard_artists <- ggplot(data = genre_counts_per_year_artists) +
   aes(x = Date, y = percentage) + 
   xlim(1958,2000) + 
   theme_light() + 
-  labs(x = 'Year', y = "Percentage of Hot 100 songs", title = "Percentage of Billboard Hot 100 artists in each genre") +
+  labs(x = 'Year', y = "Percentage of artists on Hot 100", title = "Percentage of Billboard Hot 100 artists in each genre") +
   geom_area(aes(fill = Genre), alpha = 0.8, size = 0.5, colour = "black", stat = "identity")
 
 data_wikipedia <- read_csv('output_data/grouped_genre_and_career_start.csv') |>
@@ -71,24 +70,8 @@ wikipedia <- ggplot(data = percentage_musicians) +
   xlim(1958,2000) + 
   theme_light() + 
   theme(legend.position = "none") +
-  labs(x = 'Start of career (year)', y = "Percentage of artists", title = "Percentage of artists making music in each genre") +
+  labs(x = 'Start of career (year)', y = "Percentage of artists", title = "Percentage of artists on Wikipedia") +
   geom_area(aes(fill = Genre), alpha = 0.8, size = 0.5, colour = "black", stat = "identity") 
-
-#not necessary right now, but might be for other plots
-genre_counts_per_year <- data_billboard |>
-  group_by(Date, Genre) |>
-  summarise(n = n()) |>
-  group_by(Date) |>
-  mutate(percentage = n/sum(n) * 100) |>
-  ungroup()
-
-billboard <- ggplot(data = genre_counts_per_year) + 
-  aes(x = Date, y = percentage) + 
-  xlim(1958,2000) + 
-  theme_light() + 
-  theme(legend.position = "none") +
-  labs(x = 'Year', y = "Percentage of Hot 100 songs", title = "Percentage of Billboard Hot 100 songs in each genre") +
-  geom_area(aes(fill = Genre), alpha = 0.8, size = 0.5, colour = "black", stat = "identity")
 
 ggarrange(wikipedia, billboard_artists, widths = c(4,5), ncol = 2)
 ggsave('output_data/comparison.pdf', width = 28, height = 10, units = c('cm'))
